@@ -23,4 +23,4 @@ jobs:
         role-session-name: GitHubActionsDeployment
     
     - name: Deploy Static site
-      run: aws s3 sync ./public ${{ AWS_BUCKET_ARN }} --delete
+      run: aws s3 sync ./public/ ${{ secrets.AWS_BUCKET_ARN }} --delete
