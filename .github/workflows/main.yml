@@ -21,6 +21,7 @@ jobs:
         role-to-assume: ${{ secrets.AWS_SITE_ROLE }}
         role-duration-seconds: 1200
         role-session-name: GitHubActionsDeployment
+        role-skip-session-tagging: true
     
     - name: Deploy Static site
       run: aws s3 sync ./public/ ${{ secrets.AWS_BUCKET_ARN }} --delete
