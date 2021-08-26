@@ -24,4 +24,4 @@ jobs:
         role-skip-session-tagging: true
     
     - name: Deploy Static site
-      run: aws s3 sync ./public/ s3://secrets.BUCKET_NAME --delete
+      run: aws s3 sync ./public/ s3://${{ secrets.BUCKET_NAME }} --delete
