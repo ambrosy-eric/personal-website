@@ -5,24 +5,24 @@ on:
     branches:
     - main
 
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+
 jobs:
   deploy:
     runs-on: ubuntu-latest #modify
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Configure AWS Access
-      uses: aws-actions/configure-aws-credentials@v1
+      
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
         role-to-assume: ${{ secrets.AWS_SITE_ROLE }}
-        role-duration-seconds: 1200
         role-session-name: GitHubActionsDeployment
-        role-skip-session-tagging: true
-    
+
     - name: Deploy Static site
       run: aws s3 sync ./public/ s3://${{ secrets.BUCKET_NAME }} --delete
 
