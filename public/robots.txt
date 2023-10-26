@@ -4,9 +4,10 @@ User-agent: AdsBot-Google-Mobile
 Disallow: /
 User-agent: APIs-Google
 Disallow: /
-
+User-agent: Bytespider
+Disallow: /
 User-agent: facebookscraper
-Disallow:/
+Disallow: /
 User-agent: Facebot
 Disallow: /
 User-agent: GoogleOther
